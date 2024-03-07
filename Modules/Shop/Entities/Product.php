@@ -10,7 +10,7 @@ use App\Traits\UuidTrait;
 class Product extends Model
 {
     use HasFactory, UuidTrait;
-
+        
     protected $fillable = [
         'parent_id',
 		'user_id',

@@ -108,14 +108,14 @@
                                     'product' => $product,
                                 ])
                             @empty
-                                <p>product empy</p>
+                                <p>product empty</p>
                             @endforelse
                         </div>
                         <div class="row mt-5">
                             <div class="col-12">
-                                {!! $products->links() !!}
+                                {{ $products->links() }}
                             </div>
-                        </div>                        
+                        </div>
                     </section>
                 </div>
             </div>

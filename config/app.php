@@ -168,7 +168,7 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        Modules\Shop\Providers\ShopServiceProvider::class,
+        App\Providers\ShopServiceProvider::class,
     ])->toArray(),
 
     /*

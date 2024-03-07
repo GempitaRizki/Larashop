@@ -21,8 +21,12 @@ class ProductController extends Controller
 
     public function index()
     {
-        $this->data['products'] = Product::paginate($this->perPage);
-        return $this->loadTheme('products.index', $this->data);
+        $options = [
+            'per_page' => $this->perPage,
+        ];
+    
+        $products = $this->productRepository->findAll($options);
+    
+        return $this->loadTheme('products.index', compact('products'));
     }
-
 }
