@@ -1,7 +1,6 @@
 @extends('themes.marketplaceg.layouts.app')
 
 @section('content')
-    <!-- Popular -->
     <section class="popular">
         <div class="container">
             <div class="row align-items-center">
@@ -9,7 +8,7 @@
                     <h1>Popular</h1>
                 </div>
                 <div class="col-6 text-end">
-                    <a href="#" class="btn-first">View All</a>
+                    <a href="{{route('products.index')}}" class="btn-first">View All</a>
                 </div>
             </div>
             <div class="row mt-5">
