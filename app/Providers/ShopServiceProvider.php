@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Shop\Providers;
+namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Modules\Shop\Repositories\Front\Interfaces\ProductRepositoryInterface;

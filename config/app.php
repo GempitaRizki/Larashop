@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
+use Modules\Shop\App\Providers\ShopServiceProvider;
 
 return [
 
@@ -167,6 +168,7 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Modules\Shop\Providers\ShopServiceProvider::class,
     ])->toArray(),
 
     /*
