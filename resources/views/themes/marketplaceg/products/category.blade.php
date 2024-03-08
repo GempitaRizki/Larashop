@@ -72,7 +72,7 @@
                     <section class="col-lg-9 col-md-12 products">
                         <div class="card mb-4 bg-light border-0 section-header">
                             <div class="card-body p-5">
-                                <h2 class="mb-0">Accessories</h2>
+                                <h2 class="mb-0">Category : {{ $category->name}}</h2>
                             </div>
                         </div>
                         <div class="row">
@@ -109,7 +109,7 @@
                                     'product' => $product,
                                 ])
                             @empty
-                                <p>Product Empty</p>
+                                <p>Product Empty </p>
                             @endforelse
                         </div>
                         <div class="row mt-5">

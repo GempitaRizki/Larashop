@@ -1,9 +1,7 @@
 <?php
 
-use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use Modules\Shop\App\Http\Controllers\ProductController;
-use Modules\Shop\App\Http\Controllers\ShopController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,8 +15,11 @@ use Modules\Shop\App\Http\Controllers\ShopController;
 */
 
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
-Route::get('/home', [HomeController::class, 'index'])->name('home.index');
 
-Route::group([], function () {
-    Route::resource('shop', ShopController::class)->names('shop');
+Route::get('/category/{categorySlug}', [ProductController::class, 'category'])->name('products.category');
+
+Route::get('/{categorySlug}/{productSlug}', [ProductController::class, 'show'])->name('products.show');
+
+Route::prefix('shop')->group(function () {
+    Route::get('/', 'ShopController@index');
 });
