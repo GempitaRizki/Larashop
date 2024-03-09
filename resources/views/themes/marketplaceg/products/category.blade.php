@@ -12,7 +12,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <div class="input-group mx-auto mt-5 mt-lg-0">
-                        <input type="text" class="form-control" placeholder="Mau cari apa?" aria-label="Mau cari apa?"
+                        <input type="text" class="form-control" placeholder="Do You Bleed?" aria-label="Do You Bleed?"
                             aria-describedby="button-addon2">
                         <button class="btn btn-outline-warning" type="button" id="button-addon2"><i
                                 class="bx bx-search"></i></button>

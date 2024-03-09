@@ -14,7 +14,7 @@
             <div class="row mt-5">
                 <div class="col-lg-3 col-6">
                     <div class="card card-product card-body p-lg-4 p3">
-                        <a href="product.html"><img src="{{ asset('themes/marketplaceg/assets/img/.jpg') }}"
+                        <a href="product.html"><img src="{{ asset('themes/marketplaceg/assets/img/shop_01.jpg') }}"
                                 alt="" class="img-fluid"></a>
                         <h3 class="product-name mt-3">Cannabis (/ˈkænəbɪs/)</h3>
                         <div class="rating">
@@ -70,7 +70,7 @@
                     <div class="card card-product card-body p-lg-4 p3">
                         <a href="#"><img src="{{ asset('themes/marketplaceg/assets/img/shop_04.jpg') }}"
                                 alt="" class="img-fluid"></a>
-                        <h3 class="product-name mt-3">Tranquilliser</h3>
+                        <h3 class="product-name mt-3">ranquilliser</h3>
                         <div class="rating">
                             <i class="bx bxs-star"></i>
                             <i class="bx bxs-star"></i>
@@ -102,7 +102,7 @@
             <div class="row mt-5">
                 <div class="col-lg-3 col-6">
                     <div class="card card-product card-body p-lg-4 p3">
-                        <a href="{{ shop_product_link($product)}}"><img src="{{ asset('themes/marketplaceg/assets/img/shop_01.jpg') }}"
+                        <a href="product.html"><img src="{{ asset('themes/marketplaceg/assets/img/shop_01.jpg') }}"
                                 alt="" class="img-fluid"></a>
                         <h3 class="product-name mt-3">Product 1</h3>
                         <div class="rating">
