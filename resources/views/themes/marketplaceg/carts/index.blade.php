@@ -31,7 +31,7 @@
                                                     <img src="{{ asset('themes/marketplaceg/assets/img/p1.jpg') }}"
                                                         alt="Ecommerce" style="height: 70px;">
                                                     <div class="ms-3">
-                                                        <a href="product.html">
+                                                        <a href="{{ shop_product_link($item->product)}}">
                                                             <h6 class="mb-0">{{ $item->product->name}}</h6>
                                                         </a>
                                                         <span>
