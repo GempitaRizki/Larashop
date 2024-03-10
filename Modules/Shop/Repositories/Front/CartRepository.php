@@ -16,8 +16,8 @@ class CartRepository implements CartRepositoryInterface
     public function findByUser(User $user): Cart
     {
         $cart = Cart::with([
-                'items',
-                'items.product',
+            'items',
+            'items.product',
         ])->forUser($user)->first();
 
         if (!$cart) {
@@ -35,12 +35,12 @@ class CartRepository implements CartRepositoryInterface
     public function addItem($product, $qty): CartItem
     {
         $cart = $this->findByUser(auth()->user());
-        
+
         $existItem = CartItem::where([
             'cart_id' => $cart->id,
             'product_id' => $product->id,
         ])->first();
-        
+
         if (!$existItem) {
             return CartItem::create([
                 'cart_id' => $cart->id,
@@ -89,8 +89,21 @@ class CartRepository implements CartRepositoryInterface
         ]);
     }
 
-    public function removeItem($id)
+    public function removeItem($id): bool
     {
         return CartItem::where('id', $id)->delete();
+    }
+
+    public function updateQty($items = []): void
+    {
+        if (!empty($items)) {
+            foreach ($items as $itemID => $qty) {
+                $item = CartItem::where('id', $itemID)->first();
+                if ($item) {
+                    $item->qty = $qty;
+                    $item->save();
+                }
+            }
+        }
     }
 }

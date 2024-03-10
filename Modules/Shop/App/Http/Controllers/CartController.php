@@ -36,20 +36,28 @@ class CartController extends Controller
 
         $product = $this->productRepository->findByID($productID);
 
-        if($product->stock_status != Product::STATUS_IN_STOCK){
+        if ($product->stock_status != Product::STATUS_IN_STOCK) {
             return back()->with('error', 'No Stock Available');
         }
 
-        if($product->stock < $qty){
+        if ($product->stock < $qty) {
             return back()->with('error', 'Insufficient stock');
         }
 
         $item = $this->cartRepository->addItem($product, $qty);
-        if (!$item){
+        if (!$item) {
             return back()->with('error', 'Cannot add items');
         }
 
         return back()->with('success', 'Item successfully added');
+    }
+
+    public function update(Request $request)
+    {
+        $items = $request->get('qty');
+        $this->cartRepository->updateQty($items);
+
+        return redirect(route('carts.index'))->with('success', 'Cart has been updated');
     }
 
     public function destroy($id)

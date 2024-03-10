@@ -17,7 +17,7 @@
               </a>
             </li>
             <li class="nav-item me-5">
-              <a class="nav-link" href="{{ route('carts.index') }}">
+              <a class="nav-link" href="{{ ('/carts') }}">
                 <i class="bx bx-cart-alt"></i>
                 <span class="badge text-bg-warning rounded-circle position-absolute">3</span>
               </a>

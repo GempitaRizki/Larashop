@@ -22,6 +22,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-8 col-md-7">
+                            {{ html()->form('PUT', route('carts.update'))->open() }}
                             <ul class="list-group list-group-flush">
                                 @foreach ($cart->items as $item)
                                     <li class="list-group-item py-3 border-top">
@@ -55,8 +56,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-3 col-md-2 col-lg-2">
-                                                <input type="number" name="qty" value='{{ $item->qty }}'
-                                                    class="form-control" min="1">
+                                                <input type="number" name="qty[{{ $item->id }}]" value="{{ $item->qty }}" class="form-control" min="1">
                                             </div>
                                             <div class="col-3 text-lg-end text-start text-md-end col-md-3">
                                                 <span class="fw-bold">IDR {{ $item->sub_total }}</span>
@@ -67,8 +67,9 @@
                             </ul>
                             <div class="d-flex justify-content-between mt-4">
                                 <a href="{{ route('products.index')}}" class="btn btn-first">Continue Shopping</a>
-                                <a href="#!" class="btn btn-second">Update Cart</a>
+                                <button type="submit" class="btn btn-second">Update Cart</button>
                             </div>
+                            {{ html()->form()->close() }}
                         </div>
                         <div class="col-12 col-lg-4 col-md-5">
                             <div class="mb-5 card mt-6">
@@ -76,7 +77,6 @@
                                     <h2 class="h5 mb-4">Summary</h2>
                                     <div class="card mb-2">
                                         <ul class="list-group list-group-flush">
-                                            <!-- list group item -->
                                             <li class="list-group-item d-flex justify-content-between align-items-start">
                                                 <div class="me-auto">
                                                     <div>Item Subtotal</div>

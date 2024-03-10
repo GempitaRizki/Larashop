@@ -10,5 +10,7 @@ interface CartRepositoryInterface
 {
     public function findByUser(User $user);
     public function addItem(Product $product, $qty): CartItem;
-    public function removeItem($id);
+    public function removeItem($id): bool;
+    public function updateQty($items = []): void;
+
 }
