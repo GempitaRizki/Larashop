@@ -31,11 +31,17 @@
                                                     <img src="{{ asset('themes/marketplaceg/assets/img/p1.jpg') }}"
                                                         alt="Ecommerce" style="height: 70px;">
                                                     <div class="ms-3">
-                                                        <a href="{{ shop_product_link($item->product)}}">
-                                                            <h6 class="mb-0">{{ $item->product->name}}</h6>
+                                                        <a href="{{ shop_product_link($item->product) }}">
+                                                            <h6 class="mb-0">{{ $item->product->name }}</h6>
                                                         </a>
                                                         <span>
-                                                            <small class="text-muted">{{ $item->product->price_label }}</small>
+                                                            @if ($item->product->has_sale_price)
+                                                                <small>IDR {{ $item->product->sale_price_label }}</small>
+                                                                <small
+                                                                    class="text-muted text-decoration-line-through">{{ $item->product->price_label }}</small>
+                                                            @else
+                                                                <small>IDR {{ $item->product->price_label }}</small>
+                                                            @endif
                                                         </span>
                                                         <div class="mt-2 small lh-1">
                                                             <a href="#!" class="text-decoration-none text-inherit">
@@ -49,8 +55,8 @@
                                                 </div>
                                             </div>
                                             <div class="col-3 col-md-2 col-lg-2">
-                                                <input type="number" name="qty" value='{{ $item->qty }}' class="form-control"
-                                                    min="1">
+                                                <input type="number" name="qty" value='{{ $item->qty }}'
+                                                    class="form-control" min="1">
                                             </div>
                                             <div class="col-3 text-lg-end text-start text-md-end col-md-3">
                                                 <span class="fw-bold">IDR {{ $item->sub_total }}</span>
@@ -67,32 +73,36 @@
                         <div class="col-12 col-lg-4 col-md-5">
                             <div class="mb-5 card mt-6">
                                 <div class="card-body p-6">
-                                    <!-- heading -->
                                     <h2 class="h5 mb-4">Summary</h2>
                                     <div class="card mb-2">
-                                        <!-- list group -->
                                         <ul class="list-group list-group-flush">
                                             <!-- list group item -->
                                             <li class="list-group-item d-flex justify-content-between align-items-start">
                                                 <div class="me-auto">
                                                     <div>Item Subtotal</div>
                                                 </div>
-                                                <span>{{ $cart->base_total_price }}</span>
+                                                <span>{{ $cart->base_total_price_label }}</span>
                                             </li>
-
                                             <!-- list group item -->
                                             <li class="list-group-item d-flex justify-content-between align-items-start">
                                                 <div class="me-auto">
-                                                    <div>Tax</div>
+                                                    <div>Discount</div>
                                                 </div>
-                                                <span>{{ $cart->tax_amount }}</span>
+                                                <span>{{ $cart->discount_amount_label }}</span>
                                             </li>
                                             <!-- list group item -->
                                             <li class="list-group-item d-flex justify-content-between align-items-start">
                                                 <div class="me-auto">
                                                     <div class="fw-bold">Subtotal</div>
                                                 </div>
-                                                <span class="fw-bold">{{ $cart->base_total_price }}</span>
+                                                <span class="fw-bold">{{ $cart->sub_total_price_label }}</span>
+                                            </li>
+                                            <!-- list group item -->
+                                            <li class="list-group-item d-flex justify-content-between align-items-start">
+                                                <div class="me-auto">
+                                                    <div>Tax</div>
+                                                </div>
+                                                <span>{{ $cart->tax_amount_label }}</span>
                                             </li>
                                         </ul>
                                     </div>
@@ -102,7 +112,7 @@
                                             class="btn btn-first btn-lg d-flex justify-content-between align-items-center"
                                             type="submit">
                                             Go to Checkout
-                                            <span class="fw-bold">{{ $cart->grand_total }}</span>
+                                            <span class="fw-bold">{{ $cart->grand_total_label }}</span>
                                         </button>
                                     </div>
                                     <!-- text -->

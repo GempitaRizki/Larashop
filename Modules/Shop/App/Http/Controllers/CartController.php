@@ -39,5 +39,17 @@ class CartController extends Controller
         if($product->stock_status != Product::STATUS_IN_STOCK){
             return back()->with('error', 'No Stock Available');
         }
+
+        if($product->stock < $qty){
+            return back()->with('error', 'Insufficient stock');
+        }
+
+        $item = $this->cartRepository->addItem($product, $qty);
+        if (!$item){
+            return back()->with('error', 'Cannot add items');
+        }
+
+        return back()->with('success', 'Item successfully added');
+
     }
 }
