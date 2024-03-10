@@ -22,7 +22,6 @@
 <body>
     @include('themes.marketplaceg.partials.header')
     @yield('content')
-    {{-- @include('themes.marketplaceg.partials.footer') --}}
 </body>
 
 </html>
