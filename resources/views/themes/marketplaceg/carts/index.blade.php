@@ -44,7 +44,7 @@
                                                             @endif
                                                         </span>
                                                         <div class="mt-2 small lh-1">
-                                                            <a href="#!" class="text-decoration-none text-inherit">
+                                                            <a href="{{ route('carts.destroy', [$item->id]) }}" onclick="return confirm('Are you sure to delete?')" class="text-decoration-none text-inherit">
                                                                 <span class="me-1 align-text-bottom">
                                                                     <i class='bx bx-trash'></i>
                                                                 </span>
@@ -66,7 +66,7 @@
                                 @endforeach
                             </ul>
                             <div class="d-flex justify-content-between mt-4">
-                                <a href="#!" class="btn btn-first">Continue Shopping</a>
+                                <a href="{{ route('products.index')}}" class="btn btn-first">Continue Shopping</a>
                                 <a href="#!" class="btn btn-second">Update Cart</a>
                             </div>
                         </div>

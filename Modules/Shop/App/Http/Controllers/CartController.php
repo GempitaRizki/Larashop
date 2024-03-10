@@ -50,6 +50,12 @@ class CartController extends Controller
         }
 
         return back()->with('success', 'Item successfully added');
+    }
 
+    public function destroy($id)
+    {
+        $this->cartRepository->removeItem($id);
+
+        return redirect(route('carts.index'))->with('success', 'Successfully removed item from cart');
     }
 }

@@ -88,4 +88,9 @@ class CartRepository implements CartRepositoryInterface
             'grand_total' => $grandTotal,
         ]);
     }
+
+    public function removeItem($id)
+    {
+        return CartItem::where('id', $id)->delete();
+    }
 }
