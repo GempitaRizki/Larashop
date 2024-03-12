@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Modules\Shop\App\Http\Controllers\CartController;
 use Modules\Shop\App\Http\Controllers\ProductController;
+use Modules\Shop\App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,8 +29,7 @@ Route::middleware(['auth'])->group(function(){
     Route::post('/carts', [CartController::class, 'store'])->name('carts.store');
     Route::get('/carts/{id}/remove', [CartController::class, 'destroy'])->name('carts.destroy');
     Route::put('/carts', [CartController::class, 'update'])->name('carts.update');
+    Route::get('/orders/checkout',[OrderController::class, 'checkout'])->name('orders.checkout');
 });
 
-Route::prefix('shop')->group(function () {
-    Route::get('/', 'ShopController@index');
-});
+Route::get('/{categorySlug}/{productSlug}', [ProductController::class, 'show'])->name('products.show');

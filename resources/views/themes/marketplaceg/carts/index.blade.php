@@ -108,15 +108,11 @@
                                         </ul>
                                     </div>
                                     <div class="d-grid mb-1 mt-4">
-                                        <!-- btn -->
-                                        <button
-                                            class="btn btn-first btn-lg d-flex justify-content-between align-items-center"
-                                            type="submit">
+                                        <a class="btn btn-first btn-lg d-flex justify-content-between align-items-center" href="{{ route('orders.checkout') }}">
                                             Go to Checkout
                                             <span class="fw-bold">{{ $cart->grand_total_label }}</span>
-                                        </button>
+                                        </a>
                                     </div>
-                                    <!-- text -->
                                     <p>
                                         <small>
                                             By placing your order, you agree to be bound by the Freshcart
