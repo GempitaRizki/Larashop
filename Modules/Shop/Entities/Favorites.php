@@ -19,12 +19,12 @@ class Favorites extends Model
         'product_id'
     ];
 
-    public function product()
+    public function products()
     {
         return $this->belongsTo(Product::class);
     }
 
-    public function user()
+    public function users()
     {
         return $this->belongsTo(User::class);
     }

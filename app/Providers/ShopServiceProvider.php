@@ -6,7 +6,9 @@ use Illuminate\Support\ServiceProvider;
 use Modules\Shop\Repositories\Front\CartRepository;
 use Modules\Shop\Repositories\Front\Interfaces\CategoryRepositoryInterface;
 use Modules\Shop\Repositories\Front\CategoryRepository;
+use Modules\Shop\Repositories\Front\FavoritesRepository;
 use Modules\Shop\Repositories\Front\Interfaces\CartRepositoryInterface;
+use Modules\Shop\Repositories\Front\Interfaces\FavoritesRepositoryInterface;
 use Modules\Shop\Repositories\Front\Interfaces\ProductRepositoryInterface;
 use Modules\Shop\Repositories\Front\ProductRepository;
 
@@ -38,6 +40,10 @@ class ShopServiceProvider extends ServiceProvider
         $this->app->bind(
             CartRepositoryInterface::class,
             CartRepository::class
+        );
+        $this->app->bind(
+            FavoritesRepositoryInterface::class,
+            FavoritesRepository::class,
         );
     }
 
