@@ -1,14 +1,16 @@
-<?
+<?php
 
 namespace Modules\Shop\Entities;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 use App\Traits\UuidTrait;
+use Illuminate\Database\Eloquent\Builder;
 
-class Favorites extends Model
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
+class Favorite extends Model
 {
     Use HasFactory, UuidTrait;
 

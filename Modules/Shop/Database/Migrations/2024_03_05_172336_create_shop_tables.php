@@ -254,6 +254,16 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->index('payment_type');
         });
+
+        Schema::create('shop_favorites', function (Blueprint $table) {
+            $table->id();
+            $table->uuid('user_id')->index()->nullable();
+            $table->uuid('product_id')->nullable();
+            $table->timestamps();
+
+            $table->foreign('product_id')->references('id')->on('shop_products');
+            $table->foreign('user_id')->references('id')->on('users');
+        });
     }
 
     /**
@@ -278,5 +288,6 @@ return new class extends Migration
         Schema::dropIfExists('shop_attribute_options');
         Schema::dropIfExists('shop_attributes');
         Schema::dropIfExists('shop_categories');
+        Schema::dropIfExists('shop_favorites');
     }
 };

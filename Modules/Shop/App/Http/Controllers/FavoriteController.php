@@ -7,23 +7,26 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-use Modules\Shop\Repositories\Front\Interfaces\FavoritesRepositoryInterface;
+use Modules\Shop\Repositories\Front\Interfaces\FavoriteRepositoryInterface;
 
 class FavoriteController extends Controller
 {
 
-    protected $favoritesRepositoryInterface;
+    protected $favoriteRepository;
 
-    public function __construct(FavoritesRepositoryInterface $favoritesRepositoryInterface)
+    public function __construct(FavoriteRepositoryInterface $favoriteRepository)
     {
-        $this->favoritesRepositoryInterface = $favoritesRepositoryInterface;
+        $this->favoriteRepository = $favoriteRepository;
     }
 
     public function index()
     {
-        $fav = $this->favoritesRepositoryInterface->findByUserId(auth()->user());
-        $this->data['fav'] = $fav;
-
-        return $this->loadTheme('carts.index', $this->data);
+        $user = auth()->user();
+        $favorite = $this->favoriteRepository->findByUserID($user);
+        $this->data['favorite'] = $favorite;
+    
+        dd($this->data);
+    
+        return $this->loadTheme('favorite.index', $this->data);
     }
 }

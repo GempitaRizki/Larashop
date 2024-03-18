@@ -1,12 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <p>resr</p>
-</body>
-</html>
+@extends('themes.marketplaceg.layouts.appdetail')
+@section('content')
+
+    <body>
+        <section class="breadcrumb-section pb-4 pb-md-4 pt-4 pt-md-4">
+            <div class="container">
+                <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{ '/' }}">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Favorite</li>
+                    </ol>
+                </nav>
+            </div>
+        </section>
+        <section class="main-content">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8 col-md-7">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item py-3 border-top">
+                                <div class="row align-items-center">
+                                    <div class="col-6 col-md-6 col-lg-7">
+                                        <div class="d-flex">
+                                            <img src="{{ asset('themes/marketplaceg/assets/img/p1.jpg')}}" alt="Ecommerce" style="height: 70px;">
+                                            <div class="ms-3">
+                                                <a href="product.html">
+                                                    <h6 class="mb-0">Haldiram's Sev Bhujia</h6>
+                                                </a>
+                                                <span>
+                                                    <small class="text-muted">IDR 200.000</small>
+                                                </span>
+                                                <div class="mt-2 small lh-1">
+                                                    <a href="#!" class="text-decoration-none text-inherit">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-3 text-lg-end text-start text-md-end col-md-3">
+                                        <button type="button" class="btn btn-danger">Delete</button>
+                                    </div>
+                                </div>
+                            </li>
+                    </div>
+                    </ul>
+                </div>
+    </body>
+@endsection
