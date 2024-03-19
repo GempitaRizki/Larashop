@@ -3,7 +3,7 @@
 namespace Modules\Shop\Repositories\Front\Interfaces;
 
 use App\Models\User;
-Use Modules\Shop\Entities\Favorites;
+use Modules\Shop\Entities\CartItem;
 use Modules\Shop\Entities\Product;
 
 interface FavoriteRepositoryInterface

@@ -256,14 +256,24 @@ return new class extends Migration
         });
 
         Schema::create('shop_favorites', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->uuid('user_id')->index()->nullable();
-            $table->uuid('product_id')->nullable();
+            $table->decimal('grand_total', 16, 2)->default(0);
+            $table->softDeletes();
             $table->timestamps();
 
-            $table->foreign('product_id')->references('id')->on('shop_products');
             $table->foreign('user_id')->references('id')->on('users');
         });
+
+        Schema::create('shop_favorite_items', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->uuid('fav_id');
+            $table->uuid('product_id');
+            $table->timestamps();
+
+            $table->foreign('fav_id')->references('id')->on('shop_favorites');
+            $table->foreign('product_id')->references('id')->on('shop_products');
+		});
     }
 
     /**
@@ -289,5 +299,6 @@ return new class extends Migration
         Schema::dropIfExists('shop_attributes');
         Schema::dropIfExists('shop_categories');
         Schema::dropIfExists('shop_favorites');
+        Schema::dropIfExists('shop_favorite_items');
     }
 };

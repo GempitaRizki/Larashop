@@ -70,11 +70,6 @@
                         @include('themes.marketplaceg.partials.sidebar', ['categories' => $categories])
                     </aside>
                     <section class="col-lg-9 col-md-12 products">
-                        <div class="card mb-4 bg-light border-0 section-header">
-                            <div class="card-body p-5">
-                                <h2 class="mb-0">Accessories</h2>
-                            </div>
-                        </div>
                         <div class="row">
                             <div class="d-lg-flex justify-content-between align-items-center">
                                 <div class="mb-3 mb-lg-0">

@@ -24,7 +24,6 @@ class ProductTableSeeder extends Seeder
         Model::unguard();
 
         $user = User::first();
-
         Attribute::setDefaultAttributes();
         $this->command->info('Default attributes seeded.');
         $attributeWeight = Attribute::where('code', Attribute::ATTR_WEIGHT)->first();

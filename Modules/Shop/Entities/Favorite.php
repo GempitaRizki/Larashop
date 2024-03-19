@@ -8,26 +8,35 @@ use Illuminate\Database\Eloquent\Model;
 use App\Traits\UuidTrait;
 use Illuminate\Database\Eloquent\Builder;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-
 class Favorite extends Model
 {
-    Use HasFactory, UuidTrait;
+    use UuidTrait;
 
-    protected $table = "shop_favorites";
+
+    protected $table = 'shop_favorites';
 
     protected $fillable = [
         'user_id',
-        'product_id'
+        'grand_total',
     ];
 
-    public function products()
-    {
-        return $this->belongsTo(Product::class);
-    }
-
-    public function users()
+    public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function items()
+    {
+        return $this->hasMany(FavoriteItem::class);
+    }
+
+    public function scopeForUser(Builder $query, User $user): void
+    {
+        $query->where('user_id', $user->id);
+    }
+
+    public function getGrandTotalLabelAttribute()
+    {
+        return number_format($this->grand_total);
     }
 }

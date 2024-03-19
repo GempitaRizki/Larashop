@@ -35,8 +35,7 @@ Route::middleware(['auth'])->group(function(){
     
     //checkout
     Route::get('/orders/checkout',[OrderController::class, 'checkout'])->name('orders.checkout');
-
-
+    
     //favorite
     Route::get('/favorites', [FavoriteController::class, 'index'])->name('favorites.index');
 });

@@ -14,19 +14,16 @@ class FavoriteController extends Controller
 
     protected $favoriteRepository;
 
+
     public function __construct(FavoriteRepositoryInterface $favoriteRepository)
     {
         $this->favoriteRepository = $favoriteRepository;
     }
-
     public function index()
     {
-        $user = auth()->user();
-        $favorite = $this->favoriteRepository->findByUserID($user);
+        $favorite = $this->favoriteRepository->findByUserID(auth()->user());
         $this->data['favorite'] = $favorite;
-    
-        dd($this->data);
-    
+
         return $this->loadTheme('favorite.index', $this->data);
     }
 }
