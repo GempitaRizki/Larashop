@@ -38,6 +38,8 @@ Route::middleware(['auth'])->group(function(){
     
     //favorite
     Route::get('/favorites', [FavoriteController::class, 'index'])->name('favorites.index');
+
+    Route::post('/favorites', [FavoriteController::class, 'addFavorite'])->name('favorites.store');
 });
 
 Route::get('/{categorySlug}/{productSlug}', [ProductController::class, 'show'])->name('products.show');

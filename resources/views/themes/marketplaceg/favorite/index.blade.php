@@ -17,7 +17,7 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-8 col-md-7">
                         <ul class="list-group list-group-flush">
-                            @foreach ($favorite->items as $item)
+                            {{-- @foreach ($favorite->items as $item) --}}
                                 <li class="list-group-item py-3 border-top">
                                     <div class="row align-items-center">
                                         <div class="col-6 col-md-6 col-lg-7">
@@ -43,7 +43,7 @@
                                         </div>
                                     </div>
                                 </li>
-                            @endforeach
+                            {{-- @endforeach --}}
                         </ul>
                     </div>
     </body>

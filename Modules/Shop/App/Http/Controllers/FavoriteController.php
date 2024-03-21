@@ -8,16 +8,21 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 use Modules\Shop\Repositories\Front\Interfaces\FavoriteRepositoryInterface;
+use Modules\Shop\Repositories\Front\Interfaces\ProductRepositoryInterface;
 
 class FavoriteController extends Controller
 {
 
     protected $favoriteRepository;
 
+    protected $productRepository;
 
-    public function __construct(FavoriteRepositoryInterface $favoriteRepository)
+
+    public function __construct(FavoriteRepositoryInterface $favoriteRepository, ProductRepositoryInterface $productRepository)
     {
         $this->favoriteRepository = $favoriteRepository;
+
+        $this->productRepository = $productRepository;
     }
     public function index()
     {
@@ -26,4 +31,25 @@ class FavoriteController extends Controller
 
         return $this->loadTheme('favorite.index', $this->data);
     }
+
+    public function addFavorite(Request $request)
+    {
+        try {
+            $productID = $request->get('product_id');
+            $product = $this->productRepository->findByID($productID);
+    
+            if (!$product) {
+                return response()->json(['error' => 'Product not found'], 404);
+            }
+    
+            $favoriteItem = $this->favoriteRepository->addFav($product);
+            
+            dd($favoriteItem);
+
+            return back()->with('success', 'Item successfully added to Favorites');
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+    
 }

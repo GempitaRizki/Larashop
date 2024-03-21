@@ -96,13 +96,10 @@
                                     <button type="submit" class="btn btn-add-cart"><i class="bx bx-cart-alt"></i> Add to
                                         cart</button>
                                 </div>
-                                <div class="col-md-4 col-4">
-                                    <a class="btn btn-light" href="shop-wishlist.html" data-bs-toggle="tooltip"
-                                        data-bs-html="true" aria-label="Wishlist"><i class="bx bx-heart"></i></a>
-                                </div>
-                                {{ html()->form()->close() }}
                             </div>
+                            {{ html()->form()->close() }}
                         </div>
+
                         <hr class="my-6">
                         <div class="product-info">
                             <table class="table table-borderless mb-0">
@@ -130,12 +127,16 @@
                         <br>
                         <p>{!! $product->excerpt !!}</p>
                         <hr class="my-6">
-                        <div class="product-share">
-                            <ul>
-                                <li><a href="#"><i class="bx bxl-facebook-circle"></i></a></li>
-                                <li><a href="#"><i class="bx bxl-pinterest"></i></a></li>
-                                <li><a href="#"><i class="bx bxl-whatsapp"></i></a></li>
-                            </ul>
+                        <div class="product-favorite">
+                                {{ html()->form('post', route('favorites.store'))->open() }}
+                                <input type="hidden" name="product_id" value="{{ $product->id }}" />
+                                <div class="col-md-4 col-4">
+                                    <button type="submit" class="btn btn-light" data-bs-toggle="tooltip"
+                                        data-bs-html="true" aria-label="Wishlist">
+                                        <i class="bx bx-heart"></i>
+                                    </button>
+                                </div>
+                                {{ html()->form()->close() }}
                         </div>
                     </div>
                 </div>
