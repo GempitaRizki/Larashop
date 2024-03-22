@@ -35,14 +35,14 @@ class FavoriteRepository implements FavoriteRepositoryInterface
         if (!$user) {
             throw new \Exception("User not authenticated");
         }
-    
+
         $fav = $this->findByUserID($user);
-    
+
         $existFav = FavoriteItem::where([
             'favorite_id' => $fav->id,
             'product_id' => $product->id
         ])->first();
-    
+
         if ($existFav) {
             return $existFav;
         }
@@ -52,8 +52,12 @@ class FavoriteRepository implements FavoriteRepositoryInterface
             'product_id' => $product->id
         ]);
         $newFavoriteItem->save();
-    
+
         return $newFavoriteItem;
     }
-      
+
+    public function removeFav($id): bool
+    {
+        return FavoriteItem::where('id', $id)->delete();
+    }
 }

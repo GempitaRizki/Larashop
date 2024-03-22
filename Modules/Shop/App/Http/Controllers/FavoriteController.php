@@ -29,8 +29,13 @@ class FavoriteController extends Controller
         $favorite = $this->favoriteRepository->findByUserID(auth()->user());
         $this->data['favorite'] = $favorite;
 
+        if ($favorite->isEmpty()) {
+            return $this->loadTheme('favorite.empty');
+        }
+
         return $this->loadTheme('favorite.index', $this->data);
     }
+
 
     public function addFavorite(Request $request)
     {
@@ -44,12 +49,17 @@ class FavoriteController extends Controller
     
             $favoriteItem = $this->favoriteRepository->addFav($product);
             
-            dd($favoriteItem);
-
             return back()->with('success', 'Item successfully added to Favorites');
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
+    }
+
+    public function deleteFav($id)
+    {
+        $this->favoriteRepository->removeFav($id);
+
+        return redirect(route('favorites.index'))->with('success', 'Successfully removed item from Favorites');
     }
     
 }

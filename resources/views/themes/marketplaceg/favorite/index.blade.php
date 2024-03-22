@@ -17,7 +17,7 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-8 col-md-7">
                         <ul class="list-group list-group-flush">
-                            {{-- @foreach ($favorite->items as $item) --}}
+                            @foreach ($favorite->items as $item)
                                 <li class="list-group-item py-3 border-top">
                                     <div class="row align-items-center">
                                         <div class="col-6 col-md-6 col-lg-7">
@@ -25,11 +25,11 @@
                                                 <img src="{{ asset('themes/marketplaceg/assets/img/p1.jpg') }}"
                                                     alt="Ecommerce" style="height: 70px;">
                                                 <div class="ms-3">
-                                                    <a href="product.html">
-                                                        <h6 class="mb-0">Haldiram's Sev Bhujia</h6>
+                                                    <a href="{{ shop_product_link($item->product) }}">
+                                                        <h6 class="mb-0">{{ $item->product->name }}</h6>
                                                     </a>
                                                     <span>
-                                                        <small class="text-muted">IDR 200.000</small>
+                                                        <small>IDR {{ $item->product->price_label }}</small>
                                                     </span>
                                                     <div class="mt-2 small lh-1">
                                                         <a href="#!" class="text-decoration-none text-inherit">
@@ -39,12 +39,18 @@
                                             </div>
                                         </div>
                                         <div class="col-3 text-lg-end text-start text-md-end col-md-3">
-                                            <button type="button" class="btn btn-danger">Delete</button>
+                                            <a href="{{ route('favorites.destroy', [$item->id]) }}"
+                                                onclick="return confirm('Are you sure to delete From Favorites?')">
+                                                <button type="button" class="btn btn-danger">Delete</button>
+                                            </a>
                                         </div>
                                     </div>
                                 </li>
-                            {{-- @endforeach --}}
+                            @endforeach
                         </ul>
                     </div>
+                </div>
+            </div>
+        </section>
     </body>
 @endsection

@@ -39,4 +39,10 @@ class Favorite extends Model
     {
         return number_format($this->grand_total);
     }
+
+    public function isEmpty(): bool
+    {
+        return $this->items->isEmpty();
+    }
+
 }

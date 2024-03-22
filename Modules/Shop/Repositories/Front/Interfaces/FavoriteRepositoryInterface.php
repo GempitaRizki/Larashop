@@ -10,6 +10,6 @@ use Modules\Shop\Entities\Product;
 interface FavoriteRepositoryInterface
 {
     public function findByUserID(User $user);
-
     public function addFav(Product $product): FavoriteItem;
+    public function removeFav($id): bool;
 }
