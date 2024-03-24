@@ -2,51 +2,58 @@
 
 namespace Modules\Shop\Providers;
 
+use App\Providers\RouteServiceProvider;
 use Illuminate\Support\ServiceProvider;
-
+use Illuminate\Database\Eloquent\Factory;
+use Modules\Shop\App\Http\Controllers\FavoriteController;
+use Modules\Shop\Repositories\Front\AddressRepository;
+use Modules\Shop\Repositories\Front\CartRepository;
 use Modules\Shop\Repositories\Front\Interfaces\ProductRepositoryInterface;
 use Modules\Shop\Repositories\Front\ProductRepository;
 
 use Modules\Shop\Repositories\Front\Interfaces\CategoryRepositoryInterface;
 use Modules\Shop\Repositories\Front\CategoryRepository;
+use Modules\Shop\Repositories\Front\FavoriteRepository;
+use Modules\Shop\Repositories\Front\Interfaces\AddressRepositoryInterface;
+use Modules\Shop\Repositories\Front\Interfaces\CartRepositoryInterface;
+use Modules\Shop\Repositories\Front\Interfaces\FavoriteRepositoryInterface;
 use Modules\Shop\Repositories\Front\Interfaces\TagRepositoryInterface;
 use Modules\Shop\Repositories\Front\TagRepository;
 
 class ShopServiceProvider extends ServiceProvider
 {
     /**
-     * Register bindings in the container.
-     *
-     * @return void
+     * @var string $moduleName
      */
-    public function register()
-    {
-        $this->app->bind(
-            ProductRepositoryInterface::class,
-            ProductRepository::class
-        );
-        $this->app->bind(
-            CategoryRepository::class,
-            CategoryRepositoryInterface::class
-        );
-        $this->app->bind(
-            TagRepository::class,
-            TagRepositoryInterface::class
-        );
-    }
+    protected $moduleName = 'Shop';
 
     /**
-     * Bootstrap any application services.
+     * @var string $moduleNameLower
+     */
+    protected $moduleNameLower = 'shop';
+
+    /**
+     * Boot the application events.
      *
      * @return void
      */
     public function boot()
     {
-        // Register translations, config, views, and migrations
         $this->registerTranslations();
         $this->registerConfig();
         $this->registerViews();
-        $this->loadMigrationsFrom(module_path('Shop', 'Database/Migrations'));
+        $this->loadMigrationsFrom(module_path($this->moduleName, 'Database/Migrations'));
+        $this->registerRepositories();
+    }
+
+    /**
+     * Register the service provider.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        $this->app->register(RouteServiceProvider::class);
     }
 
     /**
@@ -57,12 +64,10 @@ class ShopServiceProvider extends ServiceProvider
     protected function registerConfig()
     {
         $this->publishes([
-            module_path('Shop', 'Config/config.php') => config_path('shop.php'),
+            module_path($this->moduleName, 'Config/config.php') => config_path($this->moduleNameLower . '.php'),
         ], 'config');
-
         $this->mergeConfigFrom(
-            module_path('Shop', 'Config/config.php'),
-            'shop'
+            module_path($this->moduleName, 'Config/config.php'), $this->moduleNameLower
         );
     }
 
@@ -73,15 +78,15 @@ class ShopServiceProvider extends ServiceProvider
      */
     public function registerViews()
     {
-        $viewPath = resource_path('views/modules/shop');
+        $viewPath = resource_path('views/modules/' . $this->moduleNameLower);
 
-        $sourcePath = module_path('Shop', 'Resources/views');
+        $sourcePath = module_path($this->moduleName, 'Resources/views');
 
         $this->publishes([
             $sourcePath => $viewPath
-        ], ['views', 'shop-module-views']);
+        ], ['views', $this->moduleNameLower . '-module-views']);
 
-        $this->loadViewsFrom(array_merge($this->getPublishableViewPaths(), [$sourcePath]), 'shop');
+        $this->loadViewsFrom(array_merge($this->getPublishableViewPaths(), [$sourcePath]), $this->moduleNameLower);
     }
 
     /**
@@ -91,28 +96,64 @@ class ShopServiceProvider extends ServiceProvider
      */
     public function registerTranslations()
     {
-        $langPath = resource_path('lang/modules/shop');
+        $langPath = resource_path('lang/modules/' . $this->moduleNameLower);
 
         if (is_dir($langPath)) {
-            $this->loadTranslationsFrom($langPath, 'shop');
+            $this->loadTranslationsFrom($langPath, $this->moduleNameLower);
+            $this->loadJsonTranslationsFrom($langPath);
         } else {
-            $this->loadTranslationsFrom(module_path('Shop', 'Resources/lang'), 'shop');
+            $this->loadTranslationsFrom(module_path($this->moduleName, 'Resources/lang'), $this->moduleNameLower);
+            $this->loadJsonTranslationsFrom(module_path($this->moduleName, 'Resources/lang'));
         }
     }
 
     /**
-     * Get the paths that should be published.
+     * Get the services provided by the provider.
      *
      * @return array
      */
+    public function provides()
+    {
+        return [];
+    }
+
     private function getPublishableViewPaths(): array
     {
         $paths = [];
-        foreach (config('view.paths') as $path) {
-            if (is_dir($path . '/modules/shop')) {
-                $paths[] = $path . '/modules/shop';
+        foreach (\Config::get('view.paths') as $path) {
+            if (is_dir($path . '/modules/' . $this->moduleNameLower)) {
+                $paths[] = $path . '/modules/' . $this->moduleNameLower;
             }
         }
         return $paths;
+    }
+
+    private function registerRepositories()
+    {
+        $this->app->bind(
+            ProductRepositoryInterface::class,
+            ProductRepository::class
+        );
+
+        $this->app->bind(
+            CategoryRepositoryInterface::class,
+            CategoryRepository::class
+        );
+
+        $this->app->bind(
+            TagRepositoryInterface::class,
+            TagRepository::class
+        );
+
+        $this->app->bind(
+            CartRepositoryInterface::class,
+            CartRepository::class
+        );
+
+        $this->app->bind(
+            FavoriteRepositoryInterface::class,
+            FavoriteRepository::class
+        );
+
     }
 }

@@ -40,7 +40,6 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/favorites', [FavoriteController::class, 'index'])->name('favorites.index');
     Route::post('/favorites', [FavoriteController::class, 'addFavorite'])->name('favorites.store');
     Route::get('/favorites/{id}/remove', [FavoriteController::class, 'deleteFav'])->name('favorites.destroy');
-
     Route::get('/favorites/empty', [FavoriteController::class, 'emptyFav'])->name('emptyFav');
 });
 
