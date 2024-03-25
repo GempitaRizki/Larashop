@@ -23,7 +23,6 @@
     @include('themes.marketplaceg.partials.header')
     @include('themes.marketplaceg.partials.slider')
     @yield('content')
-    {{-- @include('themes.marketplaceg.partials.footer') --}}
 </body>
 
 </html>

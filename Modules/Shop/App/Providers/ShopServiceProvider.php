@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Shop\Providers;
+namespace Modules\Shop\App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
@@ -11,8 +11,10 @@ use Modules\Shop\Repositories\Front\ProductRepository;
 
 use Modules\Shop\Repositories\Front\Interfaces\CategoryRepositoryInterface;
 use Modules\Shop\Repositories\Front\CategoryRepository;
+use Modules\Shop\Repositories\Front\FavoriteRepository;
 use Modules\Shop\Repositories\Front\Interfaces\AddressRepositoryInterface;
 use Modules\Shop\Repositories\Front\Interfaces\CartRepositoryInterface;
+use Modules\Shop\Repositories\Front\Interfaces\FavoriteRepositoryInterface;
 use Modules\Shop\Repositories\Front\Interfaces\TagRepositoryInterface;
 use Modules\Shop\Repositories\Front\TagRepository;
 
@@ -144,6 +146,11 @@ class ShopServiceProvider extends ServiceProvider
         $this->app->bind(
             CartRepositoryInterface::class,
             CartRepository::class
+        );
+
+        $this->app->bind(
+            FavoriteRepositoryInterface::class,
+            FavoriteRepository::class
         );
     }
 }

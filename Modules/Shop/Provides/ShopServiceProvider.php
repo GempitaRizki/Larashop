@@ -4,9 +4,6 @@ namespace Modules\Shop\Providers;
 
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Database\Eloquent\Factory;
-use Modules\Shop\App\Http\Controllers\FavoriteController;
-use Modules\Shop\Repositories\Front\AddressRepository;
 use Modules\Shop\Repositories\Front\CartRepository;
 use Modules\Shop\Repositories\Front\Interfaces\ProductRepositoryInterface;
 use Modules\Shop\Repositories\Front\ProductRepository;
@@ -14,7 +11,6 @@ use Modules\Shop\Repositories\Front\ProductRepository;
 use Modules\Shop\Repositories\Front\Interfaces\CategoryRepositoryInterface;
 use Modules\Shop\Repositories\Front\CategoryRepository;
 use Modules\Shop\Repositories\Front\FavoriteRepository;
-use Modules\Shop\Repositories\Front\Interfaces\AddressRepositoryInterface;
 use Modules\Shop\Repositories\Front\Interfaces\CartRepositoryInterface;
 use Modules\Shop\Repositories\Front\Interfaces\FavoriteRepositoryInterface;
 use Modules\Shop\Repositories\Front\Interfaces\TagRepositoryInterface;

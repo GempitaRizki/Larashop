@@ -1,6 +1,5 @@
 @extends('themes.marketplaceg.layouts.appdetail')
 @section('content')
-
     <body>
         <section class="breadcrumb-section pb-4 pb-md-4 pt-4 pt-md-4">
             <div class="container">
