@@ -33,14 +33,17 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/carts/{id}/remove', [CartController::class, 'destroy'])->name('carts.destroy');
     Route::put('/carts', [CartController::class, 'update'])->name('carts.update');
     
-    //checkout
-    Route::get('/orders/checkout',[OrderController::class, 'checkout'])->name('orders.checkout');
-    
     //favorite
-    Route::get('/favorites', [FavoriteController::class, 'index'])->name('favorites.index');
     Route::post('/favorites', [FavoriteController::class, 'addFavorite'])->name('favorites.store');
     Route::get('/favorites/{id}/remove', [FavoriteController::class, 'deleteFav'])->name('favorites.destroy');
     Route::get('/favorites/empty', [FavoriteController::class, 'emptyFav'])->name('emptyFav');
+    Route::get('/favorites', [FavoriteController::class, 'index'])->name('favorites.index');
+
+    //orders
+    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+
 });
+
+
 
 Route::get('/{categorySlug}/{productSlug}', [ProductController::class, 'show'])->name('products.show');

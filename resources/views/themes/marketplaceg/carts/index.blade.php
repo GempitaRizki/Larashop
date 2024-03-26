@@ -108,7 +108,7 @@
                                         </ul>
                                     </div>
                                     <div class="d-grid mb-1 mt-4">
-                                        <a class="btn btn-first btn-lg d-flex justify-content-between align-items-center" href="{{ route('orders.checkout') }}">
+                                        <a class="btn btn-first btn-lg d-flex justify-content-between align-items-center" href="{{route('orders.index')}}">
                                             Go to Checkout
                                             <span class="fw-bold">{{ $cart->grand_total_label }}</span>
                                         </a>
